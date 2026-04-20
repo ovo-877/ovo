@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "@/pages/Home";
 import LearningSpace from "@/pages/LearningSpace";
+import PythonPractice from "@/pages/PythonPractice";
 
 export default function App() {
   return (
@@ -19,6 +20,9 @@ export default function App() {
             <Link to="/learning-space" className="text-gray-600 hover:text-pink-600 font-medium">
               学习空间
             </Link>
+            <Link to="/python-practice" className="text-gray-600 hover:text-pink-600 font-medium">
+              Python练习
+            </Link>
           </div>
         </div>
       </nav>
@@ -28,6 +32,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/learning-space" element={<LearningSpace />} />
+          <Route path="/python-practice" element={<PythonPractice />} />
         </Routes>
       </div>
     </Router>
