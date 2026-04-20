@@ -7,24 +7,173 @@ export default function PythonPractice() {
   const [selectedQuestion, setSelectedQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
 
-  // 基础语法练习题目
-  const basicQuestions = [
-    {
-      question: 'Python中，以下哪个是正确的变量命名？',
-      options: ['123abc', 'abc_123', 'abc-123', 'class'],
-      correct: 1
-    },
-    {
-      question: 'Python中，以下哪个语句用于导入模块？',
-      options: ['import module', 'include module', 'require module', 'load module'],
-      correct: 0
-    },
-    {
-      question: 'Python中，以下哪个是列表的正确定义？',
-      options: ['list = (1, 2, 3)', 'list = [1, 2, 3]', 'list = {1, 2, 3}', 'list = {"a": 1, "b": 2}'],
-      correct: 1
-    }
-  ];
+  // 基础语法练习题目 - 按类别组织
+  const basicQuestions = {
+    // 1. 变量与数据类型
+    variables: [
+      {
+        question: 'Python中，以下哪个是正确的变量命名？',
+        options: ['123abc', 'abc_123', 'abc-123', 'class'],
+        correct: 1
+      },
+      {
+        question: 'Python中，以下哪个不是基本数据类型？',
+        options: ['int', 'float', 'string', 'array'],
+        correct: 3
+      },
+      {
+        question: '将字符串"123"转换为整数的正确方法是？',
+        options: ['int("123")', 'str("123")', 'float("123")', 'bool("123")'],
+        correct: 0
+      }
+    ],
+    // 2. 运算符与表达式
+    operators: [
+      {
+        question: 'Python中，以下哪个是取模运算符？',
+        options: ['+', '-', '*', '%'],
+        correct: 3
+      },
+      {
+        question: '表达式 3 ** 2 的结果是？',
+        options: ['5', '6', '9', '8'],
+        correct: 2
+      },
+      {
+        question: '逻辑运算符 not 的优先级高于 and 和 or？',
+        options: ['是', '否', '不确定', '取决于具体情况'],
+        correct: 0
+      }
+    ],
+    // 3. 控制流
+    controlFlow: [
+      {
+        question: 'Python中，if语句的正确语法是？',
+        options: ['if condition:', 'if condition then:', 'if (condition):', 'if condition {'],
+        correct: 0
+      },
+      {
+        question: '以下哪个语句用于跳出循环？',
+        options: ['continue', 'break', 'pass', 'exit'],
+        correct: 1
+      },
+      {
+        question: 'Python中，for循环可以遍历以下哪种数据结构？',
+        options: ['列表', '元组', '字典', '以上都是'],
+        correct: 3
+      }
+    ],
+    // 4. 函数
+    functions: [
+      {
+        question: 'Python中，定义函数的关键字是？',
+        options: ['function', 'def', 'func', 'define'],
+        correct: 1
+      },
+      {
+        question: '函数默认参数应该放在参数列表的？',
+        options: ['最前面', '中间', '最后面', '任意位置'],
+        correct: 2
+      },
+      {
+        question: 'lambda函数的特点是？',
+        options: ['只能有一个表达式', '可以有多个语句', '必须有返回值', '不能接受参数'],
+        correct: 0
+      }
+    ],
+    // 5. 数据结构
+    dataStructures: [
+      {
+        question: 'Python中，以下哪个是列表的正确定义？',
+        options: ['list = (1, 2, 3)', 'list = [1, 2, 3]', 'list = {1, 2, 3}', 'list = {"a": 1, "b": 2}'],
+        correct: 1
+      },
+      {
+        question: '字典的键必须是？',
+        options: ['可变类型', '不可变类型', '数字类型', '字符串类型'],
+        correct: 1
+      },
+      {
+        question: '以下哪个数据结构是不可变的？',
+        options: ['列表', '元组', '字典', '集合'],
+        correct: 1
+      }
+    ],
+    // 6. 面向对象编程基础
+    oop: [
+      {
+        question: 'Python中，定义类的关键字是？',
+        options: ['class', 'def', 'object', 'type'],
+        correct: 0
+      },
+      {
+        question: '类的构造方法是？',
+        options: ['__init__', '__construct__', 'initialize', 'init'],
+        correct: 0
+      },
+      {
+        question: 'Python支持多重继承吗？',
+        options: ['是', '否', '仅支持两层', '取决于Python版本'],
+        correct: 0
+      }
+    ],
+    // 7. 模块与包
+    modules: [
+      {
+        question: 'Python中，以下哪个语句用于导入模块？',
+        options: ['import module', 'include module', 'require module', 'load module'],
+        correct: 0
+      },
+      {
+        question: '从模块中导入特定函数的语法是？',
+        options: ['import func from module', 'from module import func', 'import module.func', 'module.import func'],
+        correct: 1
+      },
+      {
+        question: 'Python的标准库不包括以下哪个模块？',
+        options: ['os', 'sys', 'math', 'numpy'],
+        correct: 3
+      }
+    ],
+    // 8. 文件操作
+    fileOperations: [
+      {
+        question: 'Python中，打开文件的函数是？',
+        options: ['open()', 'file()', 'read()', 'write()'],
+        correct: 0
+      },
+      {
+        question: '以写入模式打开文件的模式参数是？',
+        options: ['r', 'w', 'a', 'b'],
+        correct: 1
+      },
+      {
+        question: '使用with语句打开文件的好处是？',
+        options: ['代码更简洁', '自动处理异常', '自动关闭文件', '以上都是'],
+        correct: 3
+      }
+    ],
+    // 9. 异常处理
+    exceptions: [
+      {
+        question: 'Python中，捕获异常的关键字是？',
+        options: ['try', 'except', 'catch', 'finally'],
+        correct: 1
+      },
+      {
+        question: '以下哪个不是Python的内置异常？',
+        options: ['ValueError', 'TypeError', 'FileNotFoundError', 'CustomError'],
+        correct: 3
+      },
+      {
+        question: 'finally语句的执行时机是？',
+        options: ['仅当没有异常时', '仅当有异常时', '无论是否有异常', '仅当异常未被捕获时'],
+        correct: 2
+      }
+    ]
+  };
+
+  const [activeCategory, setActiveCategory] = useState('variables');
 
   // 函数设计练习
   const functionExercises = [
@@ -128,8 +277,70 @@ export default function PythonPractice() {
           {activeTab === 'basic' && (
             <div>
               <h2 className="text-2xl font-bold mb-6 text-pink-600">基础语法练习</h2>
+              
+              {/* 分类选择 */}
+              <div className="mb-8 overflow-x-auto">
+                <div className="flex space-x-3 pb-2">
+                  <button 
+                    onClick={() => setActiveCategory('variables')}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === 'variables' ? 'bg-pink-500 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-pink-100 border border-pink-200'}`}
+                  >
+                    变量与数据类型
+                  </button>
+                  <button 
+                    onClick={() => setActiveCategory('operators')}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === 'operators' ? 'bg-pink-500 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-pink-100 border border-pink-200'}`}
+                  >
+                    运算符与表达式
+                  </button>
+                  <button 
+                    onClick={() => setActiveCategory('controlFlow')}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === 'controlFlow' ? 'bg-pink-500 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-pink-100 border border-pink-200'}`}
+                  >
+                    控制流
+                  </button>
+                  <button 
+                    onClick={() => setActiveCategory('functions')}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === 'functions' ? 'bg-pink-500 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-pink-100 border border-pink-200'}`}
+                  >
+                    函数
+                  </button>
+                  <button 
+                    onClick={() => setActiveCategory('dataStructures')}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === 'dataStructures' ? 'bg-pink-500 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-pink-100 border border-pink-200'}`}
+                  >
+                    数据结构
+                  </button>
+                  <button 
+                    onClick={() => setActiveCategory('oop')}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === 'oop' ? 'bg-pink-500 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-pink-100 border border-pink-200'}`}
+                  >
+                    面向对象编程
+                  </button>
+                  <button 
+                    onClick={() => setActiveCategory('modules')}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === 'modules' ? 'bg-pink-500 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-pink-100 border border-pink-200'}`}
+                  >
+                    模块与包
+                  </button>
+                  <button 
+                    onClick={() => setActiveCategory('fileOperations')}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === 'fileOperations' ? 'bg-pink-500 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-pink-100 border border-pink-200'}`}
+                  >
+                    文件操作
+                  </button>
+                  <button 
+                    onClick={() => setActiveCategory('exceptions')}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === 'exceptions' ? 'bg-pink-500 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-pink-100 border border-pink-200'}`}
+                  >
+                    异常处理
+                  </button>
+                </div>
+              </div>
+              
+              {/* 题目内容 */}
               <div className="space-y-8">
-                {basicQuestions.map((q, index) => (
+                {basicQuestions[activeCategory as keyof typeof basicQuestions].map((q, index) => (
                   <div key={index} className="border border-pink-200 rounded-xl p-6">
                     <h3 className="text-lg font-bold mb-4">问题 {index + 1}</h3>
                     <p className="mb-4 text-gray-700">{q.question}</p>
@@ -138,13 +349,13 @@ export default function PythonPractice() {
                         <div key={optIndex} className="flex items-center">
                           <input
                             type="radio"
-                            id={`q${index}_opt${optIndex}`}
-                            name={`q${index}`}
+                            id={`${activeCategory}_q${index}_opt${optIndex}`}
+                            name={`${activeCategory}_q${index}`}
                             checked={answers[index] === optIndex}
                             onChange={() => submitAnswer(index, optIndex)}
                             className="mr-3"
                           />
-                          <label htmlFor={`q${index}_opt${optIndex}`} className="text-gray-600">
+                          <label htmlFor={`${activeCategory}_q${index}_opt${optIndex}`} className="text-gray-600">
                             {option}
                           </label>
                         </div>
