@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function LearningSpace() {
   const courses = [
@@ -129,9 +130,9 @@ export default function LearningSpace() {
                 </ul>
                 {course.id === 1 && (
                   <div className="mt-6">
-                    <a href="/python-practice" className="inline-block px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-colors">
+                    <Link to="/python-practice" className="inline-block px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-colors">
                       开始练习
-                    </a>
+                    </Link>
                   </div>
                 )}
               </div>
