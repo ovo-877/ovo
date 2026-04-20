@@ -281,21 +281,7 @@ export default function PythonPractice() {
     }
   ];
 
-  // 调试练习
-  const debugExercises = [
-    {
-      title: '修复循环问题',
-      code: 'for i in range(5)\n    print(i)',
-      issue: '缺少冒号',
-      solution: 'for i in range(5):\n    print(i)'
-    },
-    {
-      title: '修复变量名错误',
-      code: 'my_var = 10\nprint(my_vr)',
-      issue: '变量名拼写错误',
-      solution: 'my_var = 10\nprint(my_var)'
-    }
-  ];
+
 
   // 模拟代码执行
   const runCode = () => {
@@ -371,12 +357,7 @@ export default function PythonPractice() {
             >
               函数设计练习
             </button>
-            <button 
-              onClick={() => setActiveTab('debug')}
-              className={`px-6 py-3 rounded-full font-medium transition-all ${activeTab === 'debug' ? 'bg-purple-500 text-white shadow-lg' : 'bg-white text-gray-600 hover:bg-purple-100'}`}
-            >
-              调试练习
-            </button>
+
             <button 
               onClick={() => setActiveTab('project')}
               className={`px-6 py-3 rounded-full font-medium transition-all ${activeTab === 'project' ? 'bg-orange-500 text-white shadow-lg' : 'bg-white text-gray-600 hover:bg-orange-100'}`}
@@ -550,31 +531,7 @@ export default function PythonPractice() {
             </div>
           )}
 
-          {/* 调试练习 */}
-          {activeTab === 'debug' && (
-            <div>
-              <h2 className="text-2xl font-bold mb-6 text-purple-600">调试练习</h2>
-              <div className="space-y-8">
-                {debugExercises.map((exercise, index) => (
-                  <div key={index} className="border border-purple-200 rounded-xl p-6">
-                    <h3 className="text-lg font-bold mb-4">练习 {index + 1}: {exercise.title}</h3>
-                    <div className="mb-4">
-                      <h4 className="text-sm font-medium mb-2">有问题的代码:</h4>
-                      <pre className="bg-red-50 p-3 rounded font-mono text-sm border border-red-200">{exercise.code}</pre>
-                    </div>
-                    <div className="mb-4">
-                      <h4 className="text-sm font-medium mb-2">问题:</h4>
-                      <p className="text-gray-700">{exercise.issue}</p>
-                    </div>
-                    <div className="mb-4">
-                      <h4 className="text-sm font-medium mb-2">修复后的代码:</h4>
-                      <pre className="bg-green-50 p-3 rounded font-mono text-sm border border-green-200">{exercise.solution}</pre>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+
 
           {/* 项目练习 */}
           {activeTab === 'project' && (
