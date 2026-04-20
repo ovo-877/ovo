@@ -25,6 +25,16 @@ export default function PythonPractice() {
         question: '将字符串"123"转换为整数的正确方法是？',
         options: ['int("123")', 'str("123")', 'float("123")', 'bool("123")'],
         correct: 0
+      },
+      {
+        question: 'Python中，以下哪个是布尔类型的正确值？',
+        options: ['true', 'false', 'True', 'FALSE'],
+        correct: 2
+      },
+      {
+        question: '以下哪种数据类型是不可变的？',
+        options: ['列表', '字典', '字符串', '集合'],
+        correct: 2
       }
     ],
     // 2. 运算符与表达式
@@ -42,6 +52,16 @@ export default function PythonPractice() {
       {
         question: '逻辑运算符 not 的优先级高于 and 和 or？',
         options: ['是', '否', '不确定', '取决于具体情况'],
+        correct: 0
+      },
+      {
+        question: '表达式 10 // 3 的结果是？',
+        options: ['3', '3.333', '4', '3.0'],
+        correct: 0
+      },
+      {
+        question: '以下哪个运算符用于成员测试？',
+        options: ['in', 'is', '==', '!='],
         correct: 0
       }
     ],
@@ -61,6 +81,16 @@ export default function PythonPractice() {
         question: 'Python中，for循环可以遍历以下哪种数据结构？',
         options: ['列表', '元组', '字典', '以上都是'],
         correct: 3
+      },
+      {
+        question: '以下哪个语句用于跳过当前循环的剩余部分，继续下一次循环？',
+        options: ['break', 'continue', 'pass', 'skip'],
+        correct: 1
+      },
+      {
+        question: 'Python中，while循环的循环条件是什么类型？',
+        options: ['整数', '字符串', '布尔值', '任意类型'],
+        correct: 2
       }
     ],
     // 4. 函数
@@ -79,6 +109,16 @@ export default function PythonPractice() {
         question: 'lambda函数的特点是？',
         options: ['只能有一个表达式', '可以有多个语句', '必须有返回值', '不能接受参数'],
         correct: 0
+      },
+      {
+        question: 'Python中，函数可以返回多个值吗？',
+        options: ['可以，返回一个元组', '可以，返回一个列表', '不可以', '只能返回一个值'],
+        correct: 0
+      },
+      {
+        question: '以下哪个参数类型允许函数接受任意数量的位置参数？',
+        options: ['默认参数', '关键字参数', '*args', '**kwargs'],
+        correct: 2
       }
     ],
     // 5. 数据结构
@@ -97,6 +137,16 @@ export default function PythonPractice() {
         question: '以下哪个数据结构是不可变的？',
         options: ['列表', '元组', '字典', '集合'],
         correct: 1
+      },
+      {
+        question: '以下哪个方法用于向列表末尾添加元素？',
+        options: ['append()', 'extend()', 'insert()', 'add()'],
+        correct: 0
+      },
+      {
+        question: '以下哪个数据结构中的元素是唯一的？',
+        options: ['列表', '元组', '字典', '集合'],
+        correct: 3
       }
     ],
     // 6. 面向对象编程基础
@@ -114,6 +164,16 @@ export default function PythonPractice() {
       {
         question: 'Python支持多重继承吗？',
         options: ['是', '否', '仅支持两层', '取决于Python版本'],
+        correct: 0
+      },
+      {
+        question: 'Python中，类方法的第一个参数通常命名为？',
+        options: ['self', 'this', 'cls', 'instance'],
+        correct: 0
+      },
+      {
+        question: '以下哪个方法用于获取对象的字符串表示？',
+        options: ['__str__', '__repr__', '__unicode__', '__string__'],
         correct: 0
       }
     ],
@@ -133,6 +193,16 @@ export default function PythonPractice() {
         question: 'Python的标准库不包括以下哪个模块？',
         options: ['os', 'sys', 'math', 'numpy'],
         correct: 3
+      },
+      {
+        question: '以下哪个语句用于导入模块的所有内容？',
+        options: ['import * from module', 'from module import *', 'import module.*', 'module.import *'],
+        correct: 1
+      },
+      {
+        question: 'Python中，包是？',
+        options: ['包含__init__.py文件的目录', '单个Python文件', '可执行文件', '配置文件'],
+        correct: 0
       }
     ],
     // 8. 文件操作
@@ -151,6 +221,16 @@ export default function PythonPractice() {
         question: '使用with语句打开文件的好处是？',
         options: ['代码更简洁', '自动处理异常', '自动关闭文件', '以上都是'],
         correct: 3
+      },
+      {
+        question: '以追加模式打开文件的模式参数是？',
+        options: ['r', 'w', 'a', 'x'],
+        correct: 2
+      },
+      {
+        question: '以下哪个方法用于读取文件的所有内容？',
+        options: ['read()', 'readline()', 'readlines()', 'readall()'],
+        correct: 0
       }
     ],
     // 9. 异常处理
@@ -169,6 +249,16 @@ export default function PythonPractice() {
         question: 'finally语句的执行时机是？',
         options: ['仅当没有异常时', '仅当有异常时', '无论是否有异常', '仅当异常未被捕获时'],
         correct: 2
+      },
+      {
+        question: 'Python中，抛出异常的关键字是？',
+        options: ['throw', 'raise', 'except', 'error'],
+        correct: 1
+      },
+      {
+        question: '以下哪个异常是当操作或函数应用于不适当类型的对象时引发的？',
+        options: ['ValueError', 'TypeError', 'NameError', 'SyntaxError'],
+        correct: 1
       }
     ]
   };
@@ -230,15 +320,34 @@ export default function PythonPractice() {
         {/* 页面标题 */}
         <section className="mb-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-pink-600">
-            Python基础练习
+            Python基础实战训练营
           </h1>
           <p className="text-xl text-blue-600 mb-8">
             广东科学技术职业学院商学院
           </p>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            欢迎同学们！通过以下练习，你可以巩固Python基础语法知识，提升编程能力。
-            请选择下方的练习类型开始学习。
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+            10个精选实战项目，从入门到进阶，完全在浏览器中运行代码，让你从零开始掌握Python核心技能
           </p>
+          
+          {/* 特色标签 */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <div className="bg-white px-4 py-2 rounded-full shadow-md flex items-center">
+              <span className="text-pink-500 mr-2">📚</span>
+              <span className="text-gray-700">基础语法</span>
+            </div>
+            <div className="bg-white px-4 py-2 rounded-full shadow-md flex items-center">
+              <span className="text-blue-500 mr-2">💻</span>
+              <span className="text-gray-700">实时运行代码</span>
+            </div>
+            <div className="bg-white px-4 py-2 rounded-full shadow-md flex items-center">
+              <span className="text-green-500 mr-2">📈</span>
+              <span className="text-gray-700">循序渐进</span>
+            </div>
+            <div className="bg-white px-4 py-2 rounded-full shadow-md flex items-center">
+              <span className="text-purple-500 mr-2">🎯</span>
+              <span className="text-gray-700">实战项目</span>
+            </div>
+          </div>
         </section>
 
         {/* 练习类型标签页 */}
@@ -267,6 +376,12 @@ export default function PythonPractice() {
               className={`px-6 py-3 rounded-full font-medium transition-all ${activeTab === 'debug' ? 'bg-purple-500 text-white shadow-lg' : 'bg-white text-gray-600 hover:bg-purple-100'}`}
             >
               调试练习
+            </button>
+            <button 
+              onClick={() => setActiveTab('project')}
+              className={`px-6 py-3 rounded-full font-medium transition-all ${activeTab === 'project' ? 'bg-orange-500 text-white shadow-lg' : 'bg-white text-gray-600 hover:bg-orange-100'}`}
+            >
+              项目练习
             </button>
           </div>
         </div>
@@ -457,6 +572,116 @@ export default function PythonPractice() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {/* 项目练习 */}
+          {activeTab === 'project' && (
+            <div>
+              <h2 className="text-2xl font-bold mb-6 text-orange-600">项目练习</h2>
+              <div className="space-y-12">
+                {/* 项目1: 计算器 */}
+                <div className="border border-orange-200 rounded-xl p-6">
+                  <h3 className="text-xl font-bold mb-4">项目 1: 简单计算器</h3>
+                  <p className="mb-4 text-gray-700">
+                    编写一个简单的计算器程序，能够实现基本的加减乘除运算。
+                  </p>
+                  <div className="mb-4">
+                    <h4 className="text-sm font-medium mb-2">功能要求:</h4>
+                    <ul className="list-disc list-inside text-gray-600 space-y-1">
+                      <li>接收用户输入的两个数字</li>
+                      <li>接收用户选择的运算符</li>
+                      <li>执行相应的运算并显示结果</li>
+                      <li>处理除数为零的情况</li>
+                    </ul>
+                  </div>
+                  <div className="mb-4">
+                    <h4 className="text-sm font-medium mb-2">示例输入输出:</h4>
+                    <pre className="bg-gray-100 p-3 rounded font-mono text-sm">
+{`输入第一个数字: 10
+输入运算符 (+, -, *, /): +
+输入第二个数字: 5
+结果: 15`}
+                    </pre>
+                  </div>
+                  <textarea
+                    placeholder="请在此编写计算器代码..."
+                    className="w-full h-64 p-4 border border-gray-300 rounded-lg font-mono text-sm mb-4"
+                  />
+                  <div className="flex justify-end">
+                    <button className="px-6 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors">
+                      提交代码
+                    </button>
+                  </div>
+                </div>
+
+                {/* 项目2: 猜数字游戏 */}
+                <div className="border border-orange-200 rounded-xl p-6">
+                  <h3 className="text-xl font-bold mb-4">项目 2: 猜数字游戏</h3>
+                  <p className="mb-4 text-gray-700">
+                    编写一个猜数字游戏，程序随机生成一个1-100之间的数字，用户需要猜测这个数字。
+                  </p>
+                  <div className="mb-4">
+                    <h4 className="text-sm font-medium mb-2">功能要求:</h4>
+                    <ul className="list-disc list-inside text-gray-600 space-y-1">
+                      <li>随机生成一个1-100之间的数字</li>
+                      <li>提示用户输入猜测的数字</li>
+                      <li>告诉用户猜测的数字是偏大还是偏小</li>
+                      <li>记录用户的猜测次数</li>
+                      <li>当用户猜中时，显示恭喜信息和猜测次数</li>
+                    </ul>
+                  </div>
+                  <div className="mb-4">
+                    <h4 className="text-sm font-medium mb-2">示例运行过程:</h4>
+                    <pre className="bg-gray-100 p-3 rounded font-mono text-sm">
+{`我已经想好了一个1-100之间的数字，来猜猜看吧！
+请输入你的猜测: 50
+偏大了！
+请输入你的猜测: 25
+偏小了！
+请输入你的猜测: 37
+偏大了！
+请输入你的猜测: 31
+恭喜你猜中了！你用了4次猜测。`}
+                    </pre>
+                  </div>
+                  <textarea
+                    placeholder="请在此编写猜数字游戏代码..."
+                    className="w-full h-64 p-4 border border-gray-300 rounded-lg font-mono text-sm mb-4"
+                  />
+                  <div className="flex justify-end">
+                    <button className="px-6 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors">
+                      提交代码
+                    </button>
+                  </div>
+                </div>
+
+                {/* 项目3: 学生成绩管理系统 */}
+                <div className="border border-orange-200 rounded-xl p-6">
+                  <h3 className="text-xl font-bold mb-4">项目 3: 学生成绩管理系统</h3>
+                  <p className="mb-4 text-gray-700">
+                    编写一个简单的学生成绩管理系统，能够添加学生信息和成绩，并计算平均分。
+                  </p>
+                  <div className="mb-4">
+                    <h4 className="text-sm font-medium mb-2">功能要求:</h4>
+                    <ul className="list-disc list-inside text-gray-600 space-y-1">
+                      <li>添加学生姓名和成绩</li>
+                      <li>显示所有学生的信息</li>
+                      <li>计算并显示所有学生的平均成绩</li>
+                      <li>查找特定学生的成绩</li>
+                    </ul>
+                  </div>
+                  <textarea
+                    placeholder="请在此编写学生成绩管理系统代码..."
+                    className="w-full h-64 p-4 border border-gray-300 rounded-lg font-mono text-sm mb-4"
+                  />
+                  <div className="flex justify-end">
+                    <button className="px-6 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors">
+                      提交代码
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           )}
