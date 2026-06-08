@@ -1167,20 +1167,77 @@ print('5. 根据销量预测，合理规划库存')`
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis type="number" dataKey="消费金额" name="消费金额" />
                         <YAxis type="number" dataKey="消费频次" name="消费频次" />
-                        <Tooltip />
-                        <Scatter name="用户数据" data={data.userBehaviorData} fill="#8884d8" />
+                        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                        <Scatter name="用户" data={data.userBehaviorData} fill="#8884d8" fillOpacity={0.6} />
+                      </ScatterChart>
+                    </ResponsiveContainer>
+                  )}
+                  {activeTab === 1 && (
+                    <ResponsiveContainer width="100%" height="100%">
+                      <ScatterChart>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis type="number" dataKey="消费金额" name="消费金额" />
+                        <YAxis type="number" dataKey="消费频次" name="消费频次" />
+                        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                        <Scatter name="用户" data={data.userBehaviorData} fill="#82ca9d" fillOpacity={0.6} />
                       </ScatterChart>
                     </ResponsiveContainer>
                   )}
                   {activeTab === 2 && (
                     <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={data.cartData.slice(0, 20)}>
+                      <BarChart data={data.cartData.slice(0, 10).reduce((acc, item) => {
+                        const found = acc.find(i => i.商品 === item.商品名称);
+                        if (found) {
+                          found.购买次数 += 1;
+                        } else {
+                          acc.push({ 商品: item.商品名称, 购买次数: 1 });
+                        }
+                        return acc;
+                      }, [])}>
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="商品名称" />
+                        <XAxis dataKey="商品" />
                         <YAxis />
                         <Tooltip />
-                        <Bar dataKey="订单ID" fill="#8884d8" />
+                        <Bar dataKey="购买次数" fill="#8884d8" />
                       </BarChart>
+                    </ResponsiveContainer>
+                  )}
+                  {activeTab === 3 && (
+                    <ResponsiveContainer width="100%" height="100%">
+                      <ScatterChart>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis type="number" dataKey="消费金额" name="消费金额" />
+                        <YAxis type="number" dataKey="消费频次" name="消费频次" />
+                        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                        <Scatter name="用户群1" data={data.userBehaviorData.filter((_, i) => i % 4 === 0)} fill="#8884d8" fillOpacity={0.6} />
+                        <Scatter name="用户群2" data={data.userBehaviorData.filter((_, i) => i % 4 === 1)} fill="#82ca9d" fillOpacity={0.6} />
+                        <Scatter name="用户群3" data={data.userBehaviorData.filter((_, i) => i % 4 === 2)} fill="#ffc658" fillOpacity={0.6} />
+                      </ScatterChart>
+                    </ResponsiveContainer>
+                  )}
+                  {activeTab === 4 && (
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={[
+                            { name: '高价值用户', value: 25 },
+                            { name: '潜力用户', value: 45 },
+                            { name: '流失/低价值用户', value: 30 }
+                          ]}
+                          cx="50%"
+                          cy="50%"
+                          labelLine={false}
+                          label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                          outerRadius={80}
+                          fill="#8884d8"
+                          dataKey="value"
+                        >
+                          <Cell fill="#00C49F" />
+                          <Cell fill="#FFBB28" />
+                          <Cell fill="#FF8042" />
+                        </Pie>
+                        <Tooltip />
+                      </PieChart>
                     </ResponsiveContainer>
                   )}
                   {activeTab === 5 && (
@@ -1191,9 +1248,28 @@ print('5. 根据销量预测，合理规划库存')`
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Line type="monotone" dataKey="销量" stroke="#8884d8" activeDot={{ r: 8 }} />
-                        <Line type="monotone" dataKey="广告费" stroke="#82ca9d" />
+                        <Line type="monotone" dataKey="销量" stroke="#8884d8" strokeWidth={2} activeDot={{ r: 8 }} />
+                        <Line type="monotone" dataKey="广告费" stroke="#82ca9d" strokeWidth={2} />
                       </LineChart>
+                    </ResponsiveContainer>
+                  )}
+                  {activeTab === 6 && (
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart
+                        layout="vertical"
+                        data={[
+                          { name: '广告费', importance: 0.35 },
+                          { name: '活动次数', importance: 0.25 },
+                          { name: '客单价', importance: 0.20 },
+                          { name: '竞品价格', importance: 0.20 }
+                        ]}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis type="number" />
+                        <YAxis type="category" dataKey="name" />
+                        <Tooltip />
+                        <Bar dataKey="importance" fill="#8884d8" />
+                      </BarChart>
                     </ResponsiveContainer>
                   )}
                   {activeTab === 7 && (
@@ -1204,7 +1280,32 @@ print('5. 根据销量预测，合理规划库存')`
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Line type="monotone" dataKey="销量" stroke="#8884d8" activeDot={{ r: 8 }} />
+                        <Line type="monotone" dataKey="销量" stroke="#8884d8" strokeWidth={2} activeDot={{ r: 8 }} />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  )}
+                  {activeTab === 8 && (
+                    <ResponsiveContainer width="100%" height="100%">
+                      <ScatterChart>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis type="number" dataKey="消费金额" name="消费金额" />
+                        <YAxis type="number" dataKey="消费频次" name="消费频次" />
+                        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                        <Scatter name="正常用户" data={data.userBehaviorData.filter((_, i) => i % 5 !== 0)} fill="#82ca9d" fillOpacity={0.6} />
+                        <Scatter name="异常用户" data={data.userBehaviorData.filter((_, i) => i % 5 === 0)} fill="#FF0000" fillOpacity={0.8} />
+                      </ScatterChart>
+                    </ResponsiveContainer>
+                  )}
+                  {activeTab === 9 && (
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={data.salesData.slice(0, 30)}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="日期" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Line type="monotone" dataKey="销量" stroke="#8884d8" strokeWidth={2} activeDot={{ r: 8 }} />
+                        <Line type="monotone" dataKey="广告费" stroke="#82ca9d" strokeWidth={2} />
                       </LineChart>
                     </ResponsiveContainer>
                   )}
