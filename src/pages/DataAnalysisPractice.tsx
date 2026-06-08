@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, Typography, Tabs, Tab, Box, Button, Paper, Divider } from '@mui/material';
+import { Card, CardContent, Typography, Tabs, Tab, Box, Button, Paper, Divider, Chip } from '@mui/material';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer, ScatterChart, Scatter } from 'recharts';
@@ -91,6 +91,24 @@ const DataAnalysisPractice: React.FC = () => {
   const projectDetails = [
     {
       title: '数据预处理高阶版',
+      level: '入门',
+      levelColor: 'green',
+      theory: {
+        intro: '数据预处理是数据分析的第一步，也是最重要的一步。高质量的数据是模型效果的基础。',
+        concepts: [
+          { name: '缺失值', desc: '数据中存在的空值或NaN，可能由于采集问题或用户未填写导致', emoji: '❓' },
+          { name: '异常值', desc: '与大部分数据差异显著的值，可能是错误数据或特殊情况', emoji: '🚫' },
+          { name: '3σ原则', desc: '数据落在均值±3倍标准差之外的概率约为0.3%，通常视为异常值', emoji: '📐' },
+          { name: '特征工程', desc: '将原始数据转换为更适合模型训练的特征', emoji: '🔧' },
+          { name: '标准化', desc: '将数据缩放到均值为0、标准差为1的范围内', emoji: '📊' }
+        ],
+        tips: [
+          '数值型特征常用中位数填充缺失值，因为中位数对异常值不敏感',
+          '类别型特征常用众数或"未知"填充缺失值',
+          '3σ原则适用于近似正态分布的数据',
+          '标准化可以提升很多机器学习算法的性能'
+        ]
+      },
       description: '掌握缺失值、异常值、重复值的处理方法，以及特征工程技巧',
       tasks: [
         '处理缺失值：消费金额/频次用中位数填充，性别/地区用"未知"填充',
@@ -135,6 +153,24 @@ print(df.head())`
     },
     {
       title: '多维统计与相关性分析',
+      level: '入门',
+      levelColor: 'green',
+      theory: {
+        intro: '统计分析是数据分析的核心技能，通过量化指标描述数据特征，发现变量之间的关系。',
+        concepts: [
+          { name: '均值', desc: '所有数据的平均值，反映数据中心位置', emoji: '📊' },
+          { name: '中位数', desc: '数据排序后位于中间的值，不受极端值影响', emoji: '📈' },
+          { name: '标准差', desc: '数据离散程度的度量，值越大数据越分散', emoji: '📉' },
+          { name: '皮尔逊相关', desc: '衡量两个连续变量的线性相关程度，范围[-1,1]', emoji: '🔗' },
+          { name: '斯皮尔曼相关', desc: '衡量变量的单调关系，适用于非线性关系', emoji: '🔍' }
+        ],
+        tips: [
+          '当数据有异常值时，中位数比均值更能代表数据中心',
+          '皮尔逊相关只适用于线性关系',
+          '相关系数绝对值越大，相关性越强',
+          '相关性不等于因果关系！'
+        ]
+      },
       description: '通过描述统计和相关性分析，发现数据中的关联规律',
       tasks: [
         '计算描述统计：均值、中位数、四分位数、标准差',
@@ -174,6 +210,24 @@ print('\n影响营收的核心指标：', high_corr_features)`
     },
     {
       title: '购物车关联规则挖掘',
+      level: '进阶',
+      levelColor: 'blue',
+      theory: {
+        intro: '关联规则挖掘用于发现数据集中项之间的有趣关系，最典型的应用是购物篮分析，发现顾客购买行为模式。',
+        concepts: [
+          { name: '项集', desc: '一组物品的集合，如{手机,耳机}', emoji: '📦' },
+          { name: '支持度', desc: '项集出现的频率，P(A∩B)', emoji: '📊' },
+          { name: '置信度', desc: '购买A后购买B的概率，P(B|A)', emoji: '✅' },
+          { name: '提升度', desc: '规则的相关性，lift>1表示正相关', emoji: '⬆️' },
+          { name: 'Apriori算法', desc: '挖掘频繁项集的经典算法，基于"频繁项集的子集也频繁"原理', emoji: '🔍' }
+        ],
+        tips: [
+          '支持度阈值不宜设置过高，否则会漏掉有价值的规则',
+          '提升度>1的规则才有实际业务价值',
+          '可以结合业务场景解释规则含义',
+          '关联规则常用于商品推荐和捆绑销售'
+        ]
+      },
       description: '使用Apriori算法挖掘商品之间的关联规则，为捆绑销售提供策略',
       tasks: [
         '数据预处理：将订单数据转换为one-hot编码格式',
@@ -217,6 +271,24 @@ for i, rule in valuable_rules.head(3).iterrows():
     },
     {
       title: 'KMeans聚类分析',
+      level: '进阶',
+      levelColor: 'blue',
+      theory: {
+        intro: '聚类分析是一种无监督学习方法，用于将数据分组，使得同一组内的数据相似度较高，不同组间的数据相似度较低。',
+        concepts: [
+          { name: '聚类', desc: '将相似的数据点归为一类的过程', emoji: '📊' },
+          { name: 'KMeans', desc: '基于距离的聚类算法，将数据分为K个簇', emoji: '🔷' },
+          { name: '肘部法则', desc: '用于确定最优K值的方法', emoji: '🦾' },
+          { name: '质心', desc: '每个簇的中心点，由簇内所有点的均值计算', emoji: '🎯' },
+          { name: 'SSE', desc: '误差平方和，衡量聚类质量的指标', emoji: '📐' }
+        ],
+        tips: [
+          'KMeans对初始质心敏感，建议多次运行取最佳结果',
+          '数据需要先标准化，避免量纲影响',
+          '肘部法则是选择K值的常用方法',
+          '簇的数量应结合业务场景确定'
+        ]
+      },
       description: '使用KMeans算法对用户和商品进行分群，实现精准运营',
       tasks: [
         '用户聚类：选择特征、标准化数据、确定最优k值',
@@ -268,6 +340,24 @@ print(goods_df.groupby('商品分群').mean())`
     },
     {
       title: 'RFM模型用户分层',
+      level: '进阶',
+      levelColor: 'blue',
+      theory: {
+        intro: 'RFM模型是一种经典的用户价值分析方法，通过三个维度评估用户价值：最近消费时间、消费频次、消费金额。',
+        concepts: [
+          { name: 'R(Recency)', desc: '最近消费时间，越近越好', emoji: '⏰' },
+          { name: 'F(Frequency)', desc: '消费频次，越高越好', emoji: '🔄' },
+          { name: 'M(Monetary)', desc: '消费金额，越高越好', emoji: '💰' },
+          { name: '用户分层', desc: '根据RFM得分将用户分为不同价值等级', emoji: '🏆' },
+          { name: '分箱', desc: '将连续变量划分为多个等级', emoji: '📦' }
+        ],
+        tips: [
+          'R值越小越好，需要反向打分',
+          'F和M值越大越好',
+          '通常将每个维度分为5个等级',
+          '可以根据业务需求调整分层规则'
+        ]
+      },
       description: '使用RFM模型对用户进行分层，制定差异化运营策略',
       tasks: [
         '提取RFM三个核心指标：最近消费天数、消费频次、消费金额',
@@ -321,6 +411,24 @@ print('流失/低价值用户：唤醒活动+优惠券')`
     },
     {
       title: '线性回归分析',
+      level: '进阶',
+      levelColor: 'blue',
+      theory: {
+        intro: '线性回归是最基础的预测模型，假设自变量和因变量之间存在线性关系，用于预测连续型结果。',
+        concepts: [
+          { name: '一元线性回归', desc: '只有一个自变量的回归模型', emoji: '📈' },
+          { name: '多元线性回归', desc: '有多个自变量的回归模型', emoji: '📊' },
+          { name: '回归系数', desc: '衡量自变量对因变量的影响程度', emoji: '🔢' },
+          { name: 'R²', desc: '模型的拟合优度，范围[0,1]，越接近1越好', emoji: '✅' },
+          { name: 'MAE/MSE', desc: '衡量预测误差的指标', emoji: '📉' }
+        ],
+        tips: [
+          '检查自变量之间是否存在多重共线性',
+          '数据需要满足线性假设',
+          '标准化可以提升模型收敛速度',
+          '异常值会影响回归结果'
+        ]
+      },
       description: '使用线性回归模型量化影响因子，预测销量',
       tasks: [
         '一元线性回归：分析广告费对销量的影响',
@@ -374,6 +482,24 @@ print(f'\n预测销量：{predicted_sales[0]:.2f}')`
     },
     {
       title: '随机森林回归',
+      level: '高级',
+      levelColor: 'orange',
+      theory: {
+        intro: '随机森林是一种集成学习算法，通过构建多个决策树并综合它们的预测结果，具有较高的预测精度和抗过拟合能力。',
+        concepts: [
+          { name: '决策树', desc: '基于特征值进行递归划分的树形结构', emoji: '🌲' },
+          { name: '集成学习', desc: '将多个模型组合起来提升预测性能', emoji: '🌳' },
+          { name: '随机采样', desc: '随机选择样本和特征进行训练', emoji: '🎲' },
+          { name: '特征重要性', desc: '衡量每个特征对预测的贡献程度', emoji: '⭐' },
+          { name: 'Bagging', desc: '通过bootstrap采样构建多个模型的方法', emoji: '🎒' }
+        ],
+        tips: [
+          'n_estimators表示树的数量，通常越大越好但计算成本更高',
+          'max_depth限制树的深度，防止过拟合',
+          '随机森林可以处理非线性关系',
+          '对异常值不敏感'
+        ]
+      },
       description: '使用随机森林模型进行非线性预测，分析特征重要性',
       tasks: [
         '数据拆分：将数据按7:3拆分为训练集和测试集',
@@ -440,6 +566,24 @@ print(feature_importance)`
     },
     {
       title: '时间序列分析',
+      level: '高级',
+      levelColor: 'orange',
+      theory: {
+        intro: '时间序列分析用于处理按时间顺序排列的数据，揭示数据的趋势、季节性和周期性特征，并进行预测。',
+        concepts: [
+          { name: '趋势', desc: '数据随时间的长期变化方向', emoji: '📈' },
+          { name: '季节性', desc: '数据在固定周期内的重复模式', emoji: '🌙' },
+          { name: '周期性', desc: '比季节周期更长的波动模式', emoji: '🔄' },
+          { name: 'ARIMA', desc: '自回归综合移动平均模型', emoji: '📊' },
+          { name: '移动平均', desc: '平滑数据、揭示趋势的方法', emoji: '✨' }
+        ],
+        tips: [
+          '时间序列数据需要按时间顺序排列',
+          '移动平均窗口大小需要根据数据特点选择',
+          'ARIMA模型需要确定p、d、q参数',
+          '可以用差分方法使数据平稳'
+        ]
+      },
       description: '分析时间序列数据的趋势和周期，预测未来销量',
       tasks: [
         '数据预处理：日期格式转换、重采样',
@@ -496,6 +640,24 @@ print(future_predictions)`
     },
     {
       title: '异常检测',
+      level: '高级',
+      levelColor: 'orange',
+      theory: {
+        intro: '异常检测用于识别数据中不符合正常模式的异常点，常见应用包括欺诈检测、故障诊断、异常交易识别等。',
+        concepts: [
+          { name: '异常值', desc: '与正常数据显著不同的值', emoji: '🚨' },
+          { name: '3σ原则', desc: '基于统计分布的异常检测方法', emoji: '📐' },
+          { name: '孤立森林', desc: '基于树的异常检测算法', emoji: '🌲' },
+          { name: '离群点', desc: '远离其他数据点的观测值', emoji: '📍' },
+          { name: '污染率', desc: '数据中异常值的比例', emoji: '🔍' }
+        ],
+        tips: [
+          '统计方法适用于正态分布的数据',
+          '孤立森林对高维数据效果较好',
+          '需要结合业务知识判断是否为真正的异常',
+          '异常值不一定是错误，可能是特殊情况'
+        ]
+      },
       description: '使用统计方法和机器学习模型检测异常订单和用户',
       tasks: [
         '统计异常检测：使用3σ原则和箱线图识别异常值',
@@ -549,6 +711,24 @@ print('未支付高金额订单：提醒支付或取消订单')`
     },
     {
       title: '综合大项目',
+      level: '综合',
+      levelColor: 'red',
+      theory: {
+        intro: '综合实战项目将所学的数据分析技能整合应用，从数据准备到分析再到业务建议，完成完整的分析链路。',
+        concepts: [
+          { name: '数据整合', desc: '将多个数据源合并到一起', emoji: '🔗' },
+          { name: '多方法结合', desc: '综合使用多种分析方法', emoji: '🧩' },
+          { name: '业务落地', desc: '将分析结果转化为可执行的业务策略', emoji: '🚀' },
+          { name: '报告撰写', desc: '整理分析过程和结论', emoji: '📝' },
+          { name: '结果可视化', desc: '用图表直观展示分析结果', emoji: '📊' }
+        ],
+        tips: [
+          '明确分析目标和业务问题',
+          '按照数据预处理→探索分析→建模→评估的流程进行',
+          '结合业务知识解读分析结果',
+          '将技术指标转化为业务语言'
+        ]
+      },
       description: '整合所有知识点，完成从数据到分析到落地的完整链路',
       tasks: [
         '数据准备：整合所有数据集',
@@ -640,11 +820,17 @@ print('5. 根据销量预测，合理规划库存')`
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-purple-800 mb-4">
-            📊 Python数据分析实训模型
+            📊 Python数据分析实训
           </h1>
-          <p className="text-lg text-gray-600">
-            基于真实业务场景的数据分析实战练习
+          <p className="text-lg text-gray-600 mb-4">
+            从理论到实战，一步步掌握数据分析技能
           </p>
+          <div className="flex flex-wrap justify-center gap-2 mb-4">
+            <Chip label="🟢 入门" color="success" size="small" />
+            <Chip label="🔵 进阶" color="primary" size="small" />
+            <Chip label="🟠 高级" color="warning" size="small" />
+            <Chip label="🔴 综合" color="error" size="small" />
+          </div>
         </div>
 
         <Tabs 
@@ -676,13 +862,54 @@ print('5. 根据销量预测，合理规划库存')`
           <div className="lg:col-span-1">
             <Card className="mb-6">
               <CardContent>
-                <Typography variant="h5" component="h2" className="text-purple-800 font-bold mb-2">
-                  {projectDetails[activeTab].title}
-                </Typography>
+                <div className="flex items-center justify-between mb-2">
+                  <Typography variant="h5" component="h2" className="text-purple-800 font-bold">
+                    {projectDetails[activeTab].title}
+                  </Typography>
+                  <Chip 
+                    label={projectDetails[activeTab].level} 
+                    color={
+                      projectDetails[activeTab].levelColor === 'green' ? 'success' : 
+                      projectDetails[activeTab].levelColor === 'blue' ? 'primary' :
+                      projectDetails[activeTab].levelColor === 'orange' ? 'warning' : 'error'
+                    }
+                    size="small"
+                  />
+                </div>
                 <Typography variant="body1" className="text-gray-700 mb-4">
                   {projectDetails[activeTab].description}
                 </Typography>
                 
+                <Typography variant="h6" component="h3" className="text-purple-700 font-bold mb-2">
+                  📚 理论知识
+                </Typography>
+                <Typography variant="body2" className="text-gray-600 mb-3 bg-yellow-50 p-3 rounded-lg">
+                  {projectDetails[activeTab].theory?.intro}
+                </Typography>
+                
+                <div className="mb-4">
+                  {projectDetails[activeTab].theory?.concepts.map((concept, index) => (
+                    <div key={index} className="mb-2 p-2 bg-purple-50 rounded">
+                      <div className="flex items-center">
+                        <span className="mr-2 text-lg">{concept.emoji}</span>
+                        <span className="font-bold text-purple-700">{concept.name}</span>
+                      </div>
+                      <p className="text-sm text-gray-600 ml-8">{concept.desc}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <Typography variant="h6" component="h3" className="text-purple-700 font-bold mb-2">
+                  💡 学习提示
+                </Typography>
+                <ul className="list-disc pl-5 mb-4">
+                  {projectDetails[activeTab].theory?.tips.map((tip, index) => (
+                    <li key={index} className="text-gray-600 text-sm mb-1">
+                      {tip}
+                    </li>
+                  ))}
+                </ul>
+
                 <Typography variant="h6" component="h3" className="text-purple-700 font-bold mb-2">
                   数据集
                 </Typography>
